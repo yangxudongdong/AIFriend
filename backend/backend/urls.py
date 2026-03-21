@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,10 +28,6 @@ urlpatterns = [
 
 
 #配置静态文件支持
-from django.conf import settings
-from django.conf.urls.static import static
-
-...
 
 # 仅限开发阶段使用。生产阶段需要在nginx里配置。
 if settings.DEBUG:

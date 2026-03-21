@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import mimetypes
+
+# Django 静态文件在开发环境下会依赖 Python 的 mimetypes 来推断 Content-Type。
+# 你当前环境下 `.svg` 会被识别成 `image/svg`（不够标准），导致 Chrome 在 CSS
+# `background-image: url(...svg)` 场景下不渲染管理后台的图标。
+mimetypes.add_type("image/svg+xml", ".svg", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,7 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 # 设置static和media静态文件路径
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 # STATIC_ROOT = BASE_DIR / 'static'  # 生产阶段使用， ！啥叫生产阶段和开发阶段
 
 STATICFILES_DIRS = [  # 开发阶段使用，生产阶段需要注释掉
