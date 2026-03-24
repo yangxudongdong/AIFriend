@@ -27,12 +27,13 @@ class RegisterView(APIView):
                 'result': 'success',
                 'access': str(refresh.access_token),
                 'user_id': user.id,
-                'username': user_profile.photo.url,
+                'username': user.username,
+                'photo': user_profile.photo.url,
                 'profile': user_profile.profile,
             })
             response.set_cookie(
                 key='refresh_token',
-                vaule=str(refresh),
+                value=str(refresh),
                 httponly=True,
                 samesite='Lax',
                 secure=True,

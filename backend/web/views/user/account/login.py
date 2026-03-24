@@ -14,18 +14,19 @@ class LoginView(APIView):
                     'result' : "用户名或密码不能为空"})
             user = authenticate(username=username, password=password)
             if user:
-                user_profile = UserProfile.objects.get(username=username)
+                user_profile = UserProfile.objects.get(user=user)
                 refresh = RefreshToken.for_user(user) #生成JWT token
                 response = Response({
                     'result': 'success',
                     'access': str(refresh.access_token),
                     'user_id': user.id,
-                    'username': user_profile.photo.url,
+                    'username': user.username,
+                    'photo': user_profile.photo.url,
                     'profile': user_profile.profile,
                 })
                 response.set_cookie(
                     key = 'refresh_token',
-                    vaule = str(refresh),
+                    value = str(refresh),
                     httponly = True,
                     samesite = 'Lax',
                     secure = True,
@@ -36,5 +37,5 @@ class LoginView(APIView):
                 'result': "用户名或密码错误"
             })
         except:
-           return Response({
+            return Response({
                'result' : "系统异常，请稍后重试"})
