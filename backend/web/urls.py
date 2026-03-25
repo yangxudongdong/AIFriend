@@ -8,6 +8,7 @@ from web.views.user.account.login import LoginView
 from web.views.user.account.lougout import LogoutView
 from web.views.user.account.refresh_token import RefreshTokenView
 from web.views.user.account.register import RegisterView
+from web.views.user.profile.update import updateProfileView
 
 urlpatterns = [
     path('api/user/account/login/', LoginView.as_view()),
@@ -17,6 +18,7 @@ urlpatterns = [
     #将刚刚打包的前端页面index指到刚刚web.views.index的index函数去
 
     path('api/user/account/get_user_info/', GetUserInfoView.as_view()),
+    path('api/user/profile/update/', updateProfileView.as_view()),
 
     path('', index),
 
