@@ -1,6 +1,6 @@
 # 配置JWT接口(urls.py)
 
-from django.urls import path
+from django.urls import path, re_path
 from rest_framework_simplejwt.tokens import RefreshToken
 from web.views.index import index
 from web.views.user.account.get_user_info import GetUserInfoView
@@ -18,5 +18,7 @@ urlpatterns = [
 
     path('api/user/account/get_user_info/', GetUserInfoView.as_view()),
 
-    path('', index)
+    path('', index),
+
+    re_path(r'^(?!media/|static/|assets/).*$', index)
 ]
