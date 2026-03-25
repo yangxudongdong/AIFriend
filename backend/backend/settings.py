@@ -18,6 +18,8 @@ import mimetypes
 # `background-image: url(...svg)` 场景下不渲染管理后台的图标。
 mimetypes.add_type("image/svg+xml", ".svg", True)
 
+mimetypes.add_type("application/javascript", ".js", True)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

@@ -22,7 +22,7 @@ class RefreshTokenView(APIView):
                 })
                 response.set_cookie(
                     key='refresh_token',
-                    vaule=str(refresh),
+                    value=str(refresh),
                     httponly=True,
                     samesite='Lax',
                     secure=True,
