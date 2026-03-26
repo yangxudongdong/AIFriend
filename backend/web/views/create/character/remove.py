@@ -11,6 +11,9 @@ class RemoveCharacterView(APIView):
         try:
             character_id = request.data['character_id']
             Character.objects.fileter(pk=character_id, author__user=request.user).delete()
+            return Response({
+                'result': 'success',
+            })
         except:
             return Response({
                 'result': '系统异常，请稍后重试'
