@@ -24,7 +24,7 @@ onMounted(async () => {
 
     if(route.meta.needLogin && !user.isLogin()) {
       await router.replace({
-        name: 'login-account-login-index',
+        name: 'user-account-login-index',
       })
     }
   }
