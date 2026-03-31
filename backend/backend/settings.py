@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import mimetypes
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Django 静态文件在开发环境下会依赖 Python 的 mimetypes 来推断 Content-Type。
 # 你当前环境下 `.svg` 会被识别成 `image/svg`（不够标准），导致 Chrome 在 CSS
 # `background-image: url(...svg)` 场景下不渲染管理后台的图标。
