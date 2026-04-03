@@ -80,6 +80,7 @@ class MessageChatView(APIView):
             self.event_stream(app, inputs, message, friend),
             content_type='text/event-stream')
         response['Cache-Control'] = 'no-cache'
+        response['X-Accel-Buffering'] = 'no'
         return response
 
     async def tts_sender(self, app, inputs, mq, ws, task_id):
@@ -184,7 +185,7 @@ class MessageChatView(APIView):
                 full_output += msg['content']
                 yield f'data:{json.dumps({"content": msg["content"]}, ensure_ascii=False)}\n\n'
             if msg.get('audio', None):
-                yield f'data: {json.dumps({"audio": msg["audio"]}, ensure_ascii=False)}'
+                yield f'data:{json.dumps({"audio": msg["audio"]}, ensure_ascii=False)}\n\n'
             if msg.get('usage', None):
                 full_usage = msg['usage']
 

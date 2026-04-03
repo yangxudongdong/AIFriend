@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import mimetypes
 
+import mimetypes
+
+mimetypes.add_type("application/javascript", ".mjs", True)
+
 from dotenv import load_dotenv
 
 load_dotenv()
