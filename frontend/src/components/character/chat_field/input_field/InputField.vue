@@ -64,7 +64,7 @@ function close() {
   showMic.value = false
 }
 
-function stop() {
+function handleStop() {
   ++ processId
 }
 
@@ -94,7 +94,7 @@ defineExpose({
         v-else
         @close="showMic = false"
         @send="handleSend"
-        @stop=""
+        @stop="handleStop"
     />
 </template>
 
