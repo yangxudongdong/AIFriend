@@ -41,7 +41,7 @@ SECRET_KEY = "django-insecure-3i$zuo%5(lh0$g#cliqx_qivyv^l$u2_(r#tf@7p)$=o4%gm0x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'app7768.acapp.acwing.com.cn']
 
 
 # Application definition
@@ -139,17 +139,23 @@ USE_TZ = True
 
 # 设置static和media静态文件路径
 STATIC_URL = "static/"
-# STATIC_ROOT = BASE_DIR / 'static'  # 生产阶段使用， ！啥叫生产阶段和开发阶段
 
-STATICFILES_DIRS = [  # 开发阶段使用，生产阶段需要注释掉
-    BASE_DIR / 'static',  #存放系统的相关静态文件，如css等
-]
+if not DEBUG:
+    STATIC_ROOT = BASE_DIR / 'static'  # 生产阶段使用， ！啥叫生产阶段和开发阶段
+else:
+    STATICFILES_DIRS = [  # 开发阶段使用，生产阶段需要注释掉
+        BASE_DIR / 'static',  #存放系统的相关静态文件，如css等
+    ]
 
-MEDIA_URL = 'http://127.0.0.1:8000/media/'
+if DEBUG:
+    MEDIA_URL = 'http://127.0.0.1:8000/media/'
+else:
+    MEDIA_URL = 'https://app7768.acapp.acwing.com.cn/media/'
+
 MEDIA_ROOT = BASE_DIR / 'media'    #存放用户上传的文件，如头像图片等
 
 
-# 使用JWT认证，  ！JWT是干吗的
+# 使用JWT认证，
 from datetime import timedelta
 
 REST_FRAMEWORK = {
